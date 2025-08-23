@@ -10,20 +10,19 @@ import { RouterModule } from '@angular/router';
 import { SvgLogo } from "../../commons/svg-logo/svg-logo";
 
 @Component({
-  selector: 'app-register',
-  standalone: true,
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    InputTextModule,
-    PasswordModule,
-    ButtonModule,
-    CardModule,
-    RouterModule,
-    SvgLogo
-],
-  templateUrl: './register.html',
-  styleUrls: ['./register.scss']
+    selector: 'app-register',
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        InputTextModule,
+        PasswordModule,
+        ButtonModule,
+        CardModule,
+        RouterModule,
+        SvgLogo
+    ],
+    templateUrl: './register.html',
+    styleUrls: ['./register.scss']
 })
 export class Register implements OnInit {
   registerForm!: FormGroup;

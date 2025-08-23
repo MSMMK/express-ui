@@ -3,10 +3,9 @@ import { CommonModule } from '@angular/common';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 @Component({
-  selector: 'app-loading-overlay',
-  standalone: true,
-  imports: [CommonModule, ProgressSpinnerModule],
-  template: `
+    selector: 'app-loading-overlay',
+    imports: [CommonModule, ProgressSpinnerModule],
+    template: `
   @if (show) {
     <div class="overlay">
       <p-progress-spinner
@@ -18,7 +17,7 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
     </div>
   }
   `,
-  styles: [`
+    styles: [`
     .overlay {
       position: fixed;
       top: 50%;

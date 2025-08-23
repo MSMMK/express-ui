@@ -9,20 +9,19 @@ import { ToastModule } from 'primeng/toast';
 import { SelectModule } from 'primeng/select';
 
 @Component({
-  selector: 'app-transaction-history',
-  standalone: true,
-  imports: [
-    CommonModule,
-    TableModule,
-    ButtonModule,
-    ReactiveFormsModule,
-    SelectModule,
-    ConfirmDialogModule,
-    ToastModule,
-  ],
-  providers: [ConfirmationService],
-  templateUrl: './transactions-history.html',
-  styleUrls: ['./transactions-history.scss'],
+    selector: 'app-transaction-history',
+    imports: [
+        CommonModule,
+        TableModule,
+        ButtonModule,
+        ReactiveFormsModule,
+        SelectModule,
+        ConfirmDialogModule,
+        ToastModule,
+    ],
+    providers: [ConfirmationService],
+    templateUrl: './transactions-history.html',
+    styleUrls: ['./transactions-history.scss']
 })
 export class TransactionHistory {
   from: any;

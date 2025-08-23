@@ -12,20 +12,19 @@ import { AuthService } from '../auth-service';
 import { finalize } from 'rxjs';
 
 @Component({
-  selector: 'app-auth',
-  standalone: true,
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    InputTextModule,
-    PasswordModule,
-    ButtonModule,
-    CardModule,
-    RouterLink,
-    SvgLogo
-],
-  templateUrl: './login.html',
-  styleUrls: ['./login.scss']
+    selector: 'app-auth',
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        InputTextModule,
+        PasswordModule,
+        ButtonModule,
+        CardModule,
+        RouterLink,
+        SvgLogo
+    ],
+    templateUrl: './login.html',
+    styleUrls: ['./login.scss']
 })
 export class Login implements OnInit {
   loginForm!: FormGroup;

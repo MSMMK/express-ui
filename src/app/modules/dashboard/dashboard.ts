@@ -5,11 +5,10 @@ import { ChartModule } from 'primeng/chart';
 import { RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'app-dashboard',
-  standalone: true,
-  imports: [CommonModule, CardModule, ChartModule, RouterModule],
-  templateUrl: './dashboard.html',
-  styleUrls: ['./dashboard.scss']
+    selector: 'app-dashboard',
+    imports: [CommonModule, CardModule, ChartModule, RouterModule],
+    templateUrl: './dashboard.html',
+    styleUrls: ['./dashboard.scss']
 })
 export class Dashboard {
   isBrowser = false;
