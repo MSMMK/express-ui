@@ -1,0 +1,13 @@
+  <aside class="sidebar" [ngClass]="{ collapsed: sidebarCollapsed }">
+        <div class="logo" *ngIf="!sidebarCollapsed">
+        <app-svg-logo/>
+    </div>
+    <ul class="nav-list">
+      <li routerLink="dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"><i class="pi pi-home"></i> <span *ngIf="!sidebarCollapsed">الاحصائيات</span></li>
+      <li routerLink="mony-transform" routerLinkActive="active"><i class="pi pi-refresh"></i> <span *ngIf="!sidebarCollapsed">تحويل</span></li>
+      <li routerLink="transactions"  routerLinkActive="active"><i class="pi pi-wallet"></i> <span *ngIf="!sidebarCollapsed">المعاملات</span></li>
+      <li routerLink="branches"  routerLinkActive="active"><i class="pi pi-warehouse"></i> <span *ngIf="!sidebarCollapsed">الفروع</span></li>
+      <li routerLink="users"  routerLinkActive="active"><i class="pi pi-users"></i> <span *ngIf="!sidebarCollapsed">المستخدمين</span></li>
+      <li routerLinkActive="active" class="bottom-item"><i class="pi pi-sign-out"></i> <button class="btn-logout" (click)="logout()" *ngIf="!sidebarCollapsed">الحروج</button></li>
+    </ul>
+  </aside>

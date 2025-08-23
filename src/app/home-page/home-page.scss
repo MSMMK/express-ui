@@ -1,0 +1,16 @@
+.layout {
+  display: flex;
+  height: 100vh;
+  position: relative;
+  // overflow: hidden;
+
+  .main {
+    flex: 1;
+    padding: 2rem;
+    padding-top: 4rem; // Adjusted for header height
+    margin-top: 3rem;
+
+    // background: #f9f9f9;
+    // margin: auto;
+  }
+}

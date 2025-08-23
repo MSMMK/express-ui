@@ -1,0 +1,87 @@
+<div class="container mb-5">
+    <div class="row justify-content-start shadow-sm mb-3 p-4 bg-white">
+    <div class="flex-column col-sm-12 col-md-6 col-lg-3">
+      <label for="from">اسم الفرع</label>
+      <p-select
+      id="from"
+      [showClear]="true"
+      [options]="(branchesNames$ | async) || []"
+      [style.width.%]="100"
+      [(ngModel)]="searchCriteria.query" placeholder="اختر اسم الفرع" />
+    </div>
+    <div class="flex-column col-sm-12 col-md-6 col-lg-3">
+      <label for="from">مدير الفرع</label>
+      <p-select id="from" [style.width.%]="100" optionLabel="phoneNumber" optionValue="id"
+        placeholder="اختر مدير الفرع" />
+    </div>
+    <div class="col-sm-12 col-md-6 col-lg-4"></div>
+    <div class="flex-column d-flex align-items-center justify-content-end mt-3 col-sm-12 col-md-6 col-lg-2">
+      <button class="d-block w-50 btn-search" (click)="search()" pButton>بحث</button>
+    </div>
+  </div>
+</div>
+<div class="container mb-3">
+  <div class="row text-start my-4 p-2">
+    <div class="col">
+      <button class="btn-color btn-search" pButton (click)="showDialog()">اضف فرع جديد</button>
+    </div>
+  </div>
+  <div class="row p-2 bg-white shadow-sm">
+    <div class="transactions-wrapper">
+      <p-toast></p-toast>
+      <p-confirmDialog></p-confirmDialog>
+      <p-table [value]="(branches$ | async) || []" class="p-datatable-sm">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>الكود</th>
+            <th>الاسم باللغه العربيه</th>
+            <th>الاسم باللغه الانجليزيه</th>
+            <th>المحافظه</th>
+            <th>المدينه</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-t>
+          <tr>
+            <td>{{ t.code }}</td>
+            <td>{{ t.nameAr }}</td>
+            <td>{{ t.nameEn }}</td>
+            <td>{{ t.governorate?.nameAr }}</td>
+            <td>{{ t.city?.nameAr }}</td>
+            <td>
+              <button pButton icon="pi pi-trash" class="p-button-danger p-button-sm btn-delete" (click)="deleteBranch(t)"></button>
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template #emptymessage>
+          <app-loading-overlay [show]="isLoading" text="انتظر لحظه..."></app-loading-overlay>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+</div>
+
+
+<p-dialog header="اضافه فرع جديد" [modal]="true" [(visible)]="visible" [style]="{ width: '25rem' }">
+  <form [formGroup]="form" (ngSubmit)="addBranch()">
+    <div class="form-group">
+      <label for="nameEn" class="font-semibold w-24">الاسم باللغه العربيه</label>
+      <input [style.width.%]="100" formControlName="nameAr" pInputText id="nameEn" class="flex-auto" autocomplete="off" />
+    </div>
+    <div class="form-group">
+      <label for="nameAr" class="font-semibold w-24">الاسم باللغه الانجليزيه</label>
+      <input [style.width.%]="100" formControlName="nameEn" pInputText id="nameAr" class="flex-auto" autocomplete="off" />
+    </div>
+    <div class="form-group">
+      <label for="branch" class="font-semibold w-24">المحافظه</label>
+      <p-select [style.width.%]="100" id="branch" [appendTo]="'body'" [disabled]="(governorates$ | async)?.length! <= 0" (onChange)="getCities($event)" [options]="(governorates$ | async) || []" optionLabel="nameAr"  formControlName="governorate" placeholder="اختر المحافظه" />
+    </div>
+     <div class="form-group">
+      <label for="branch" class="font-semibold w-24">المدينه</label>
+      <p-select [style.width.%]="100" [disabled]="(cities$ | async)?.length! <= 0" [appendTo]="'body'" id="branch" [options]="(cities$ | async) || []" optionLabel="nameAr" formControlName="city" placeholder="اختر المدينه" />
+    </div>
+    <div class="flex justify-end gap-2">
+      <button pButton class="btn-delete ms-2" (click)="visible = false">الغاء</button>
+      <button pButton class="btn-search" type="submit">حفظ</button>
+    </div>
+  </form>
+</p-dialog>

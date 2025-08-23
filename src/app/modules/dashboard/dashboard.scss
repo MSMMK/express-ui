@@ -1,0 +1,50 @@
+.dashboard-container {
+  display: flex;
+  // min-height: 100vh;
+  font-family: 'Segoe UI', sans-serif;
+
+  .dashboard-content {
+    flex: 1;
+    // padding: 2rem;
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+
+      p-card {
+        text-align: center;
+
+        h4 {
+          margin-bottom: 0.5rem;
+          color: #949393;
+        }
+
+        h2 {
+          font-size: 1.8rem;
+          color: #1B0F31;
+        }
+      }
+    }
+
+    .charts {
+      margin-top: 2rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+
+      p-chart {
+        width: 100%;
+      }
+
+      @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+      }
+    }
+  }
+}

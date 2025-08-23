@@ -1,0 +1,70 @@
+:host {
+    display: block;
+    // background-color: #f0f2f5;
+    font-family: 'Inter', sans-serif;
+    padding: 2rem;
+}
+
+.financial-app {
+    max-width: 1200px;
+    margin: auto;
+}
+
+.custom-card {
+    border: none;
+    border-radius: 1.5rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.custom-card:hover {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.wallet-icon {
+    width: 80px;
+    height: 50px;
+    object-fit: contain;
+    transition: transform 0.2s;
+}
+
+.wallet-icon:hover {
+    transform: scale(1.05);
+}
+
+.p-inputtext,
+.p-inputgroup-addon,
+.p-button {
+    border-radius: 12px;
+}
+
+.p-button-primary {
+    background: #007bff !important;
+    border: none !important;
+}
+
+.p-button-primary:hover {
+    background: #0056b3 !important;
+}
+
+.p-button-secondary {
+    background: #6c757d !important;
+    border: none !important;
+}
+
+.p-button-secondary:hover {
+    background: #5a6268 !important;
+}
+
+.p-inputnumber-buttons-stacked .p-inputnumber-button.p-button-text {
+    border: none;
+    background: transparent;
+}
+
+.p-inputnumber-buttons-stacked .p-inputnumber-button.p-button-text:hover {
+    background: #f0f0f0;
+}
+
+.p-inputnumber .p-inputnumber-input {
+    text-align: center;
+}

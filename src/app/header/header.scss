@@ -1,0 +1,27 @@
+.app-header {
+  position: fixed;
+  height: 60px;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background:#1B0F31;
+;
+  padding: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.name-header {
+  min-width: 100px;
+  display: flex;
+  margin-top: 5px;
+  flex-direction: column;
+  align-content: center;
+  line-height: 10px;
+  text-align: center;
+}
+

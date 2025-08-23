@@ -1,0 +1,35 @@
+<div class="dashboard-container">
+  <main class="dashboard-content">
+    <h1>لوحة التحكم</h1>
+
+    <div class="stats">
+      <p-card>
+        <h4>إجمالي الرصيد</h4>
+        <h2>$ 5,750.00</h2>
+      </p-card>
+      <p-card>
+        <h4>الرصيد الرئيسي</h4>
+        <h2>$ 3,450.00</h2>
+      </p-card>
+      <p-card>
+        <h4>الرصيد الائتماني</h4>
+        <h2>$ 2,300.00</h2>
+      </p-card>
+      <p-card>
+        <h4>إجمالي التحملات</h4>
+        <h2>1,500</h2>
+      </p-card>
+    </div>
+
+    <div class="charts">
+      <p-card header="نظرة عامة للرصيد">
+        <p-chart type="line" [data]="lineData" [options]="chartOptions"></p-chart>
+      </p-card>
+      <p-card header="أنواع المعاملات">
+        <p-chart type="doughnut" style="max-width: 450px; max-height: 450px; display: block; margin: auto;"
+         [data]="doughnutData"
+         [options]="chartOptions"></p-chart>
+      </p-card>
+    </div>
+  </main>
+</div>

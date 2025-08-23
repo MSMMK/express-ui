@@ -1,0 +1,16 @@
+{
+  "app": {
+    "title": "Express Cash",
+    "dashboard": "Dashboard",
+    "transfer": "Balance Transfer",
+    "transactions": "Transactions",
+    "settings": "Settings",
+    "logout": "Logout"
+  },
+  "auth": {
+    "login": "Login",
+    "email": "Email",
+    "password": "Password",
+    "submit": "Sign in"
+  }
+}

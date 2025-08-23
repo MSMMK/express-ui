@@ -1,0 +1,46 @@
+.transactions-wrapper {
+  // padding: 2rem;
+  width: 100%;
+
+  ::ng-deep .p-table {
+    width: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  th {
+    // background-color: #e0f7f6;
+    color: #ffffff;
+    font-weight: 600;
+  }
+
+  td {
+    vertical-align: middle;
+  }
+
+  .p-button-danger {
+    background-color: #e53935;
+    border: none;
+  }
+
+  @media (max-width: 768px) {
+    .transactions-wrapper {
+      padding: 1rem;
+    }
+
+    th,
+    td {
+      font-size: 14px;
+    }
+  }
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+}

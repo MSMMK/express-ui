@@ -1,0 +1,35 @@
+<div class="auth-container">
+  <div class="logo-wrapper">
+    <app-svg-logo/>
+  </div>
+
+  <p-card class="auth-card">
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <h3>Register</h3>
+
+      <div class="form-field">
+        <label for="fullName">Full Name</label>
+        <input pInputText id="fullName" type="text" formControlName="fullName" />
+        <small *ngIf="registerForm.get('fullName')?.invalid && isSubmitted" class="error">Name is required</small>
+      </div>
+
+      <div class="form-field">
+        <label for="email">Email</label>
+        <input pInputText id="email" type="email" formControlName="email" />
+        <small *ngIf="registerForm.get('email')?.invalid && isSubmitted" class="error">Valid email required</small>
+      </div>
+
+      <div class="form-field">
+        <label for="password">Password</label>
+        <input pPassword id="password" formControlName="password" [feedback]="true" />
+        <small *ngIf="registerForm.get('password')?.invalid && isSubmitted" class="error">Min 6 characters required</small>
+      </div>
+
+      <button pButton type="submit" label="Register" class="submit-btn" [disabled]="registerForm.invalid"></button>
+
+      <div class="switch-link">
+        Already have an account? <a routerLink="/login">Login</a>
+      </div>
+    </form>
+  </p-card>
+</div>

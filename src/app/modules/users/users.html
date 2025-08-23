@@ -1,0 +1,139 @@
+<div class="container">
+  <div class="row justify-content-start shadow-sm mb-3 p-4 bg-white">
+    <div class="form-group col-sm-12 col-md-6 col-lg-6">
+      <label for="from">اسم العامل</label>
+      <p-select
+        id="from"
+        name="user"
+        [options]="(users$ | async) || []"
+        [style.width.%]="100"
+        optionLabel="username"
+        optionValue="id"
+        [(ngModel)]="searchCriteria.userId"
+        placeholder="اختر اسم الفرع"
+      />
+    </div>
+    <div class="col-sm-12 col-md-6 col-lg-4"></div>
+    <div class="form-group d-flex align-items-center justify-content-end mt-3 col-sm-12 col-md-6 col-lg-2">
+      <button class="d-block w-50 btn-search" type="button" (click)="search()" pButton>بحث</button>
+    </div>
+  </div>
+  <div class="row text-start mb-3 bg-white p-2">
+    <div class="col">
+      <button pButton class="btn-search" (click)="showDialog()">اضف فرع جديد</button>
+    </div>
+  </div>
+  <div class="row shadow-sm p-2 bg-white">
+    <div class="transactions-wrapper">
+      <p-toast></p-toast>
+      <p-confirmDialog></p-confirmDialog>
+      <p-table [value]="(users$ | async) || []" class="p-datatable-sm">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>الاسم</th>
+            <th>الاميل</th>
+            <th>المحافظه</th>
+            <th>المدينه</th>
+            <th>الفرع</th>
+            <th>النوع</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-t>
+          <tr>
+            <td>{{ t.username }}</td>
+            <td>{{ t.email }}</td>
+            <td>{{ t.governorate?.nameAr }}</td>
+            <td>{{ t.city?.nameAr }}</td>
+            <td>{{ t.branchName }}</td>
+            <td>
+              <button
+                pButton
+                icon="pi pi-trash"
+                class="btn-delete"
+                (click)="deleteUser(t)"
+              ></button>
+            </td>
+          </tr>
+        </ng-template>
+          <ng-template #emptymessage>
+          <app-loading-overlay [show]="isLoading" text="انتظر لحظه..."></app-loading-overlay>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+</div>
+
+<p-dialog
+  header="اضافه فرع جديد"
+  [modal]="true"
+  [(visible)]="visible"
+  [style]="{ width: '25rem' }"
+>
+  <form [formGroup]="form" (ngSubmit)="addUser()">
+    <div class="form-group">
+      <label for="email" class="font-semibold w-24">الاميل</label>
+      <input
+        [style.width.%]="100"
+        formControlName="email"
+        pInputText
+        id="email"
+        class="flex-auto"
+        autocomplete="off"
+      />
+    </div>
+    <div class="form-group">
+      <label for="username" class="font-semibold w-24">الاسم</label>
+      <input
+        [style.width.%]="100"
+        formControlName="username"
+        pInputText
+        id="username"
+        class="flex-auto"
+        autocomplete="off"
+      />
+    </div>
+    <div class="form-group">
+      <label for="password" class="font-semibold w-24">الرقم السري</label>
+      <input
+        [style.width.%]="100"
+        formControlName="password"
+        pInputText
+        id="password"
+        class="flex-auto"
+        autocomplete="off"
+      />
+    </div>
+    <div class="form-group">
+      <p-fileupload
+        #fu
+        mode="basic"
+        chooseLabel="Choose"
+        chooseIcon="pi pi-upload"
+        [chooseStyleClass]="'btn-search'"
+        name="demo[]"
+        accept="image/*"
+        maxFileSize="1000000"
+        (onSelect)="onUpload($event)"
+      >
+      </p-fileupload>
+    </div>
+    <div class="form-group">
+      <label for="governorates" class="font-semibold w-24">المحافظه</label>
+      <p-select [style.width.%]="100" [appendTo]="'body'" id="governorates" [options]="(governorates$ | async) || []" optionLabel="nameAr" (onChange)="getCities($event)" optionValue="id" formControlName="govId" placeholder="اختر المحافظه" />
+    </div>
+     <div class="form-group">
+      <label for="cities" class="font-semibold w-24">المدينه</label>
+      <p-select [style.width.%]="100" id="cities" [appendTo]="'body'" [options]="(cities$ | async) || []" optionLabel="nameAr" optionValue="id" formControlName="cityId" placeholder="اختر المدينه" />
+    </div>
+
+    <div class="form-group">
+      <label for="branches" class="font-semibold w-24">الفروع</label>
+      <p-select [style.width.%]="100" id="branches" [appendTo]="'body'" [options]="(branches$ | async) || []" optionLabel="nameAr" optionValue="code" formControlName="branchCode" placeholder="اختر فرع" />
+    </div>
+
+    <div class="flex justify-end gap-2">
+      <button pButton class="btn-delete ms-2" (click)="visible = false">الغاء</button>
+      <button pButton type="submit" class="btn-search">حفظ</button>
+    </div>
+  </form>
+</p-dialog>

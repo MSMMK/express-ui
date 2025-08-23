@@ -1,0 +1,157 @@
+<div class="container">
+  <div class="row">
+    <!-- Send Money Section -->
+    <div class="col-sm-12 col-md-6 col-ld-8">
+      <div class="col-12 md:col-4 p-card p-4 surface-card custom-card">
+        <h3 class="font-bold text-2xl mb-4 text-center">Send Money</h3>
+        <div class="p-field mb-4">
+          <div class="flex justify-content-center mb-3">
+            <img
+              src="https://placehold.co/80x50/141829/white?text=PayPal"
+              alt="PayPal"
+              class="wallet-icon cursor-pointer border-round-lg shadow-1 mx-2"
+            />
+            <img
+              src="https://placehold.co/80x50/333333/white?text=Stripe"
+              alt="Stripe"
+              class="wallet-icon cursor-pointer border-round-lg shadow-1 mx-2"
+            />
+            <img
+              src="https://placehold.co/80x50/000000/white?text=ApplePay"
+              alt="Apple Pay"
+              class="wallet-icon cursor-pointer border-round-lg shadow-1 mx-2"
+            />
+            <img
+              src="https://placehold.co/80x50/0F9D58/white?text=GPay"
+              alt="GPay"
+              class="wallet-icon cursor-pointer border-round-lg shadow-1 mx-2"
+            />
+          </div>
+        </div>
+        <div class="p-field mb-4">
+          <label for="fromAccount">نوع العمليه</label>
+          <p-select
+            [(ngModel)]="fromAccount"
+            [style.width.%]="100"
+            [ngModelOptions]="{ standalone: true }"
+            [options]="accounts"
+            optionLabel="name"
+          ></p-select>
+        </div>
+        <div class="p-field mb-4">
+          <label for="fromAccount">من</label>
+          <p-select
+            [(ngModel)]="fromAccount"
+            [style.width.%]="100"
+            [ngModelOptions]="{ standalone: true }"
+            [options]="accounts"
+            optionLabel="name"
+          ></p-select>
+        </div>
+        <div class="p-field mb-4">
+          <label for="toAccount">إلى</label>
+          <p-select
+            [(ngModel)]="toAccount"
+            [style.width.%]="100"
+            [ngModelOptions]="{ standalone: true }"
+            [options]="accounts"
+            optionLabel="name"
+          ></p-select>
+        </div>
+        <div class="p-field mb-4">
+          <label for="recipient" class="block font-medium mb-2"
+            >Recipient Email/Phone</label
+          >
+          <input
+            id="recipient"
+            type="text"
+            [style.width.%]="100"
+            pInputText
+            class="p-inputtext p-component p-element w-full"
+            placeholder="Enter recipient details"
+          />
+        </div>
+        <div class="p-field mb-4">
+          <label for="amount" class="block font-medium mb-2">المبلغ (جنيه)</label>
+          <div class="p-inputgroup">
+            <p-inputnumber [(ngModel)]="amount"
+            [invalid]="amount === undefined"
+            mode="decimal"
+            [style.width.%]="100"
+            [minFractionDigits]="2"
+            placeholder="Amount" />
+          </div>
+        </div>
+           <div class="p-field mb-4">
+          <label for="amount" class="block font-medium mb-2">الخصم</label>
+          <div class="p-inputgroup">
+            <p-inputnumber [(ngModel)]="amount"
+            [invalid]="amount === undefined"
+            mode="decimal"
+            [style.width.%]="100"
+            [minFractionDigits]="2"
+            placeholder="Amount" />
+          </div>
+        </div>
+        <div class="flex justify-content-center">
+          <button pButton label="Send" class="p-button-primary w-full"></button>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-12 col-md-6 col-ld-4">
+      <div class="row">
+        <!-- Cash Denominations Section -->
+        <div class="col-12 md:col-4 p-card p-4 surface-card custom-card">
+          <h3 class="font-bold text-2xl mb-4 text-center">
+            Cash Denominations
+          </h3>
+          <div class="p-field mb-3" *ngFor="let note of cashDenominations">
+            <label class="block font-medium mb-2"
+              >{{ note.value }} EGP Note</label
+            >
+            <p-inputNumber
+              [style.width.%]="100"
+              [(ngModel)]="note.count"
+              mode="decimal"
+              showButtons="true"
+              [min]="0"
+              class="w-full"
+            ></p-inputNumber>
+          </div>
+        </div>
+      </div>
+      <!-- Total Amount Section -->
+      <div class="row">
+        <div class="col-12 md:col-4 p-card p-4 surface-card custom-card">
+          <h3 class="font-bold text-2xl mb-4 text-center">Total Amount</h3>
+          <div class="p-field mb-2 flex justify-content-between">
+            <span class="font-medium">Subtotal</span>
+            <span>{{ subtotal | currency : "USD" }}</span>
+          </div>
+          <div class="p-field mb-4">
+            <label for="discount" class="block font-medium mb-2"
+              >Discount Code</label
+            >
+            <div class="p-inputgroup">
+              <input
+                id="discount"
+                type="text"
+                [style.width.%]="100"
+                pInputText
+                class="p-inputtext p-component p-element w-full"
+                placeholder="Enter code"
+              />
+              <button pButton label="Apply" class="p-button-secondary mt-3"></button>
+            </div>
+          </div>
+          <div
+            class="p-field mb-2 flex justify-content-between font-bold text-xl"
+          >
+            <span>Grand Total</span>
+            <span>{{ grandTotal | currency : "USD" }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

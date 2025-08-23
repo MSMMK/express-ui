@@ -1,0 +1,32 @@
+<div class="auth-container">
+  <div class="logo-wrapper">
+    <app-svg-logo />
+  </div>
+
+  <p-card class="auth-card">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <h3>صفحة تسجيل الدخول</h3>
+
+      <div class="form-field">
+        <label for="email">البريد الالكتروني</label>
+        <input pInputText id="email" type="email" formControlName="username" />
+        @if (loginForm.get('username')?.invalid && isSubmitted) {
+        <small class="error">Valid email required</small>
+        }
+      </div>
+
+      <div class="form-field">
+        <label for="password">كلمة المرور</label>
+        <input pPassword id="password" type="password" formControlName="password" [feedback]="false" />
+        @if (loginForm.get('password')?.invalid && isSubmitted) {
+        <small class="error">Password is required</small>
+        }
+      </div>
+
+      <button [loading]="isLoading" pButton type="submit" label="تسجيل الدخول" class="submit-btn" [disabled]="loginForm.invalid"></button>
+
+      <div class="switch-link">ليس لديك حساب؟ <a routerLink="/register/signup">تسجيل</a>
+      </div>
+    </form>
+  </p-card>
+</div>

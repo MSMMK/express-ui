@@ -1,0 +1,60 @@
+<div class="container">
+  <div class="row justify-content-start shadow-sm mb-3 p-4 bg-white">
+    <div class="form-group col-sm-12 col-md-6 col-lg-3">
+      <label for="from">الرقم المحول منه</label>
+        <p-select
+          id="from"
+          [style.width.%]="100"
+          [options]="from"
+          optionLabel="phoneNumber"
+          optionValue="id"
+          placeholder="اختر رقم التليفون"
+        />
+    </div>
+       <div class="form-group col-sm-12 col-md-6 col-lg-3">
+      <label for="from">الرقم المحول اليه</label>
+        <p-select
+          id="from"
+          [style.width.%]="100"
+          [options]="from"
+          optionLabel="phoneNumber"
+          optionValue="id"
+          placeholder="اختر رقم التليفون"
+        />
+    </div>
+    <div class="col-sm-12 col-md-6 col-lg-4"></div>
+    <div class="form-group d-flex align-items-center justify-content-end mt-3 col-sm-12 col-md-6 col-lg-2">
+      <button class="d-block w-50" pButton>بحث</button>
+    </div>
+  </div>
+  <div class="row shadow-sm p-2 bg-white">
+    <div class="transactions-wrapper">
+      <p-toast></p-toast>
+      <p-confirmDialog></p-confirmDialog>
+      <p-table [value]="transactions" class="p-datatable-sm">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>From</th>
+            <th>To</th>
+            <th>Amount</th>
+            <th>Date</th>
+            <th>Notes</th>
+            <th>Action</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-t>
+          <tr>
+            <td>{{ t.from }}</td>
+            <td>{{ t.to }}</td>
+            <td>{{ t.amount | currency: 'USD' }}</td>
+            <td>{{ t.date | date: 'mediumDate' }}</td>
+            <td>{{ t.notes }}</td>
+            <td>
+              <button pButton icon="pi pi-trash" class="p-button-danger p-button-sm" (click)="delete(t)"></button>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+</div>
