@@ -5,5 +5,5 @@ import { Register } from "./register/register";
 export const routes: Routes = [
   {path: 'login', component: Login},
   {path: 'signup', component: Register},
-  {path:'**', redirectTo: 'login'},
+  {path: '**', redirectTo: 'login'},
 ]

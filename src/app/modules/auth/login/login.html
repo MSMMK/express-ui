@@ -5,11 +5,11 @@
 
   <p-card class="auth-card">
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-      <h3>صفحة تسجيل الدخول</h3>
+      <!-- <h3>صفحة تسجيل الدخول</h3> -->
 
       <div class="form-field">
-        <label for="email">البريد الالكتروني</label>
-        <input pInputText id="email" type="email" formControlName="username" />
+        <label for="email">البريد الالكتروني / الاسم</label>
+        <input pInputText id="email" [style.width.%]="100" type="email" formControlName="username" />
         @if (loginForm.get('username')?.invalid && isSubmitted) {
         <small class="error">Valid email required</small>
         }
@@ -17,16 +17,19 @@
 
       <div class="form-field">
         <label for="password">كلمة المرور</label>
-        <input pPassword id="password" type="password" formControlName="password" [feedback]="false" />
+        <p-password
+        [toggleMask]="true"
+        id="password"
+        type="password"
+        [style.width.%]="100"
+        formControlName="password"
+        [feedback]="false" />
         @if (loginForm.get('password')?.invalid && isSubmitted) {
         <small class="error">Password is required</small>
         }
       </div>
 
-      <button [loading]="isLoading" pButton type="submit" label="تسجيل الدخول" class="submit-btn" [disabled]="loginForm.invalid"></button>
-
-      <div class="switch-link">ليس لديك حساب؟ <a routerLink="/register/signup">تسجيل</a>
-      </div>
+      <button [loading]="isLoading" pButton type="submit" label="تسجيل الدخول" class="submit-btn btn-search" [disabled]="loginForm.invalid"></button>
     </form>
   </p-card>
 </div>

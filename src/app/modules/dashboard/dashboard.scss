@@ -1,6 +1,8 @@
+.container {
+  width: 95% !important;
+}
 .dashboard-container {
   display: flex;
-  // min-height: 100vh;
   font-family: 'Segoe UI', sans-serif;
 
   .dashboard-content {

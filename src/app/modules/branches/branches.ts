@@ -24,7 +24,7 @@ import { Dialog } from 'primeng/dialog';
 import { InputTextModule } from 'primeng/inputtext';
 import { User } from '../../models/user';
 import { BranchService } from './branch-service';
-import { LoadingOverlayComponent } from '../commons/loader/loader.component';
+import { LoadingOverlayComponent } from '../common/loader/loader.component';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { LookupsService } from '../../services/lookups-service';
 import { Lookup } from '../../models/lookup.model';

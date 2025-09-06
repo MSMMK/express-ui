@@ -1,0 +1,194 @@
+<p-toast />
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <div class="container">
+    <div class="row justify-content-between">
+      <div class="col-sm-12 col-lg-6 my-1 container-style container-border">
+        <div class="col-12 md:col-4 p-card p-5">
+          <h4 class="font-bold text-2xl mb-4 text-center">تحويل رصيد</h4>
+          <div class="p-field mb-4"></div>
+          <div class="p-field mb-4">
+            <label for="fromAccount">نوع العمليه</label>
+            <p-select
+              [style.width.%]="100"
+              [options]="(transactionsTypes$ | async) || []"
+              optionLabel="nameAr"
+              optionValue="code"
+              formControlName="transactionType"
+            ></p-select>
+          </div>
+          <div class="p-field mb-4">
+            <label for="fromAccount">من</label>
+            <p-select
+              [style.width.%]="100"
+              formControlName="sim"
+              [options]="(fromBranchSims$ | async) || []"
+              optionLabel="phoneNumber"
+            >
+              <ng-template let-item pTemplate="item">
+                  <div class="flex items-center">
+                    @if (item.phoneNumber.startsWith('010')) {
+                        <img src="vodafone.png" [class]="'mr-2 flag flag'" style="width: 30px" />
+                    }@else if (item.phoneNumber.startsWith('011')) {
+                        <img src="etisalat.png" [class]="'mr-2 flag flag'" style="width: 30px" />
+                    }@else if (item.phoneNumber.startsWith('012')) {
+                        <img src="Orange.png" [class]="'mr-2 flag flag'" style="width: 30px" />
+                    }@else {
+                        <img src="we.png" [class]="'mr-2 flag flag'" style="width: 30px" />
+                    }
+
+                    <span class="mx-5">{{ item.dailyBalance | currency : "EGP" }}</span>
+                    <span class="mx-5">{{ item.phoneNumber }}</span>
+                  </div>
+              </ng-template>
+            </p-select>
+          </div>
+          <div class="p-field mb-4">
+            <label for="toAccount">إلى</label>
+            <p-autocomplete
+              [dropdown]="true"
+              [style.width.%]="100"
+              formControlName="customerPhoneNumber"
+              [suggestions]="toSuggestions"
+              [optionLabel]="'phoneNumber'"
+              optionValue="phoneNumber"
+              (ngModelChange)="change($event)"
+              (completeMethod)="search($event)"
+            >
+              <ng-template let-item pTemplate="item">
+                  <div class="flex items-center">
+                    @if (item.phoneNumber.startsWith('010')) {
+                        <img src="vodafone.png" [class]="'mr-2 flag flag'" style="width: 30px" />
+                    }@else if (item.phoneNumber.startsWith('011')) {
+                        <img src="etisalat.png" [class]="'mr-2 flag flag'" style="width: 30px" />
+                    }@else if (item.phoneNumber.startsWith('012')) {
+                        <img src="Orange.png" [class]="'mr-2 flag flag'" style="width: 30px" />
+                    }@else {
+                        <img src="we.png" [class]="'mr-2 flag flag'" style="width: 30px" />
+                    }
+
+                    <span class="mx-5">{{ item.customer?.name }}</span>
+                    <span class="mx-5">{{ item.phoneNumber }}</span>
+                  </div>
+              </ng-template>
+            </p-autocomplete>
+          </div>
+          <div class="p-field mb-4">
+            <label for="amount" class="block font-medium mb-2"
+              >المبلغ (جنيه)</label
+            >
+            <div class="p-inputgroup">
+              <p-inputnumber
+                formControlName="amount"
+                #amount
+                (onInput)="subtotal = amount.value!; grandTotal = amount.value!"
+                [invalid]="amount === undefined"
+                mode="decimal"
+                [currency]="'EGP'"
+                [style.width.%]="100"
+                placeholder="Amount"
+              />
+            </div>
+          </div>
+          <div class="p-field mb-4">
+            <label for="amount" class="block font-medium mb-2">الخصم</label>
+            <div class="p-inputgroup">
+              <p-inputnumber
+                formControlName="discount"
+                #disc
+                (onInput)="discount = disc.value!"
+                [disabled]="!amount.value"
+                mode="decimal"
+                [style.width.%]="80"
+                [minFractionDigits]="2"
+                placeholder="Amount"
+              />
+              <button
+                pButton
+                type="button"
+                label="تفعيل"
+                class="p-button-secondary me-2"
+                (click)="applyDiscount()"
+              ></button>
+            </div>
+          </div>
+          <div class="p-field mb-4">
+            <p-iftalabel>
+              <textarea
+                pTextarea
+                id="description"
+                formControlName="notes"
+                [style.width.%]="100"
+                rows="3"
+                cols="30"
+              ></textarea>
+              <label for="description">ملاحظات</label>
+            </p-iftalabel>
+          </div>
+          <div class="flex justify-content-center">
+            <button
+              pButton
+              label="تحويل"
+              [disabled]="form.invalid"
+              type="submit"
+              class="w-full btn-search"
+            ></button>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12 col-lg-5 my-1">
+        <div class="row container-style  container-border">
+          <div class="p-4">
+            <h4 class="font-bold text-2xl mb-3 text-center">
+              عدد الفئات من كل عمله
+            </h4>
+
+            <p-table
+              [value]="cashDenominations"
+              class="p-datatable-sm text-center"
+            >
+              <ng-template pTemplate="body" let-t>
+                <tr class="text-center">
+                  <th>{{ t.value }} جنيه</th>
+                  <td>
+                    <p-inputNumber
+                      [formControlName]="t.key"
+                      [style.width.%]="20"
+                      (onInput)="t.sum = t.value * val.value!"
+                      mode="decimal"
+                      #val
+                      [min]="0"
+                    ></p-inputNumber>
+                  </td>
+                  <td>
+                    {{ calcSumOfCashDenomiations(t, val.value!, t.value) }}
+                  </td>
+                </tr>
+              </ng-template>
+            </p-table>
+          </div>
+        </div>
+        <div class="row container-style container-border mt-3">
+          <div class="p">
+            <h4 class="font-bold text-2xl text-center">الحساب الكلى</h4>
+            <p-table class="p-datatable-sm text-center">
+              <ng-template pTemplate="header">
+                <tr class="text-center">
+                  <th>الحساب قبل الخصم</th>
+                  <td [style.width.%]="40">{{ subtotal }} جنيه</td>
+                </tr>
+                <tr>
+                  <th>الخصم</th>
+                  <td [style.width.%]="40">{{ discount }} جنيه</td>
+                </tr>
+                <tr>
+                  <th>الحساب الكلى</th>
+                  <td [style.width.%]="40">{{ grandTotal }} جنيه</td>
+                </tr>
+              </ng-template>
+            </p-table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

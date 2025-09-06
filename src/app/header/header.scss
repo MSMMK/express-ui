@@ -1,27 +1,60 @@
 .app-header {
   position: fixed;
-  height: 60px;
   top: 0;
   left: 0;
   width: 100%;
-  background:#1B0F31;
-;
+  background-color: #ffffff;
   padding: 10px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   z-index: 1000;
-  color: white;
+  color: #4c1bd2;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+}
+
+.collapse-width {
+  width: calc(100% - 60px) !important;
+  transition: width 0.3s ease;
+}
+
+.non-collapse-width {
+  width: calc(100% - 220px) !important;
+  transition: width 0.3s ease;
 }
 
 .name-header {
-  min-width: 100px;
+  min-width: 170px;
   display: flex;
-  margin-top: 5px;
   flex-direction: column;
   align-content: center;
   line-height: 10px;
-  text-align: center;
+  text-align: end;
+  margin-left: 10px;
 }
 
+.collapse-btn {
+  background: transparent !important;
+  border: none !important;
+  color: #4D20D2 !important;
+  transform: scale(1);
+  transition: all 0.6s ease;
+
+  i {
+    font-size: 1.5rem !important;
+    font-weight: lighter !important;
+  }
+
+  :hover {
+    transform: scale(1.1);
+  }
+
+}
+
+
+.img-style {
+  border: 2px solid #4b14edfd !important;
+  width: 50px;
+  height: 50px;
+  margin: auto;
+  object-fit: cover;
+  border-radius: 50%;
+}

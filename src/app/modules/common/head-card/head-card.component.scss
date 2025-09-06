@@ -1,0 +1,49 @@
+.card {
+  background-color: #fff !important;
+    transition: all 0.3s ease;
+  h5 {
+    text-align: center;
+    color: #160534 !important;
+  }
+  h6 {
+    text-align: center;
+    color: #50504e !important;
+  }
+  i {
+    width: 50px;
+    height: 50px;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: #fcfbff;
+    font-size: 1.5rem !important;
+    // border: none !important;
+    font-weight: lighter !important;
+    border: .25px solid !important;
+  }
+  .pi {
+    text-align: center;
+
+    // color: #651e06fd !important;
+  }
+  .pi-wallet {
+    color: #0c50e2 !important;
+  }
+
+  .pi-dollar {
+    color: rgb(223, 13, 9) !important;
+  }
+  .pi-credit-card {
+    color: #1a983a !important;
+  }
+  .pi-chart-line {
+    color: #107b9b !important;
+  }
+}
+.card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background-color: #eae8effd !important;
+  transform: scale(.98);
+}

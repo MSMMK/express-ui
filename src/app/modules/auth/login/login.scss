@@ -6,7 +6,7 @@
   justify-content: center;
   padding: 2rem;
   min-height: 100vh;
-  background: #f9fdfc;
+  background: linear-gradient(135deg, #bed8ff 0%, #042861 100%);
 
   .logo-wrapper {
     margin-bottom: 1rem;
@@ -17,8 +17,8 @@
     max-width: 400px;
     padding: 2rem;
     border-radius: 12px;
-    background: white;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.03);
+    background: transparent;
+    box-shadow: 15px 15px 15px 15px rgba(0, 0, 0, 0.15);
 
     form {
       display: flex;
@@ -28,7 +28,7 @@
     h3 {
       text-align: center;
       margin-bottom: 1.5rem;
-      color: #006d77;
+      color: #ffffff;
     }
 
     .form-field {
@@ -37,10 +37,10 @@
       margin-bottom: 1.25rem;
 
       label {
-        margin-bottom: 0.25rem;
+        margin-bottom: 1rem;
         font-weight: 600;
         font-size: 0.9rem;
-        color: #444;
+        color: #ffffff;
       }
 
       input.p-inputtext, input.p-password-input {
@@ -48,10 +48,16 @@
         padding: 0.75rem 1rem;
         font-size: 0.95rem;
         border: 1px solid #d6dee2;
+        outline: none;
+        border: none;
         width: 100%;
 
+        &:hover{
+          border-color: #004a99;
+        }
+
         &:focus {
-          border-color: #009688;
+          border-color: #004a99;
           box-shadow: 0 0 0 2px rgba(0, 150, 136, 0.15);
         }
       }
@@ -100,4 +106,12 @@
       padding: 1.5rem 1rem;
     }
   }
+}
+
+:host ::ng-deep .p-password-input {
+    width: 100%;
+}
+
+p-inputtext{
+  outline: none !important;
 }

@@ -6,10 +6,11 @@ import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
-import { Router, RouterLink } from '@angular/router';
-import { SvgLogo } from "../../commons/svg-logo/svg-logo";
+import { Router } from '@angular/router';
+import { SvgLogo } from "../../common/svg-logo/svg-logo";
 import { AuthService } from '../auth-service';
 import { finalize } from 'rxjs';
+import { MessageService } from 'primeng/api';
 
 @Component({
     selector: 'app-auth',
@@ -20,7 +21,6 @@ import { finalize } from 'rxjs';
         PasswordModule,
         ButtonModule,
         CardModule,
-        RouterLink,
         SvgLogo
     ],
     templateUrl: './login.html',
@@ -32,7 +32,7 @@ export class Login implements OnInit {
   isLoading = false;
 
 
-  constructor(private fb: FormBuilder, private router: Router, private authService: AuthService) {}
+  constructor(private fb: FormBuilder, private message: MessageService, private router: Router, private authService: AuthService) {}
 
   ngOnInit() {
     this.loginForm = this.fb.group({
@@ -47,10 +47,17 @@ export class Login implements OnInit {
     if (this.loginForm.valid) {
       this.authService.login(this.loginForm.value)
         .pipe(finalize(() => {this.isLoading = false; this.isSubmitted = false}))
-        .subscribe(res => {
+        .subscribe({
+          next: res => {
           this.authService.setUser(res);
           this.isSubmitted = false;
           this.router.navigate(['/home'])
+          },
+          // error: err => {
+          //   this.message.add({severity:'error',
+          //      summary: 'خطأ',
+          //      detail: err?.error?.message || 'حدث خطأ ما الرجاء المحاولة لاحقا'});
+          // }
         });
     }
   }

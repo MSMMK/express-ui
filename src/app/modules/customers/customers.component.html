@@ -1,0 +1,165 @@
+<div class="container mb-3 search-style">
+  <div class="row justify-content-start shadow-sm mb-3 p-4 bg-white">
+    <div class="flex-column col-sm-12 col-md-4">
+      <label for="from">مدير الفرع</label>
+      <p-select
+        id="from"
+        [style.width.%]="100"
+        optionLabel="phoneNumber"
+        optionValue="id"
+        placeholder="اختر مدير الفرع"
+      />
+    </div>
+    <div class="col-sm-12 col-md-4"></div>
+    <div
+      class="flex-column d-flex align-items-end justify-content-end mt-3 col-sm-12 col-md-4"
+    >
+      <button
+        [icon]="'pi pi-search'"
+        class="w-50 btn-search"
+        (click)="search()"
+        pButton
+      >
+        بحث
+      </button>
+    </div>
+  </div>
+</div>
+<div class="container mb-3 container-style">
+  <div class="row text-start my-4 p-2">
+    <div class="col d-flex justify-content-end">
+      <button class="btn-color btn-search" pButton (click)="showDialog()">
+        اضف عميل
+      </button>
+    </div>
+  </div>
+  <div class="row p-2 bg-white shadow-sm">
+    <div class="transactions-wrapper">
+      <p-toast></p-toast>
+      <p-confirmDialog></p-confirmDialog>
+      <p-table [value]="(customers$ | async) || []" class="p-datatable-sm">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>الاسم</th>
+            <th>البريد الالكترونى</th>
+            <th>رقم البطاقه</th>
+            <th>الفرع</th>
+            <th>الحاله</th>
+            <th></th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-t>
+          <tr>
+            <td>{{ t.name }}</td>
+            <td>{{ t.email }}</td>
+            <td>{{ t.cif }}</td>
+            <td>{{ t.branch?.nameAr }}</td>
+            <td><span class="status"
+              [ngClass]="{'status-active' : t.status == 'ACTIVE', 'status-inactive' : t.status == 'INACTIVE'}">
+              {{ t.status == 'ACTIVE'? 'نشط' : 'غير نشط' }}
+             </span></td>
+            <td>
+              <button
+                pButton
+                icon="pi pi-trash"
+                class="p-button-danger p-button-sm btn-delete"
+                (click)="deleteCustomer(t)"
+              ></button>
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template #emptymessage>
+          <app-loading-overlay
+            [show]="isLoading"
+            text="انتظر لحظه..."
+          ></app-loading-overlay>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+</div>
+
+<p-dialog
+  header="اضافه فرع جديد"
+  [modal]="true"
+  [(visible)]="visible"
+  [style]="{ width: '25rem' }"
+>
+  <form [formGroup]="form" (ngSubmit)="addSim()">
+    <div class="form-group">
+      <label for="name" class="font-semibold w-24">الاسم</label>
+      <input
+        pInputText
+        id="name"
+        class="flex-auto"
+        [style.width.%]="100"
+        formControlName="name"
+      />
+      <!-- <input [style.width.%]="100" formControlName="nameEn" pInputText id="nameAr" class="flex-auto" autocomplete="off" /> -->
+    </div>
+
+    <div class="form-group">
+      <label for="email" class="font-semibold w-24">الاميل</label>
+      <input
+        pInputText
+        id="email"
+        class="flex-auto"
+        [style.width.%]="100"
+        formControlName="email"
+      />
+      <!-- <input [style.width.%]="100" formControlName="nameEn" pInputText id="nameAr" class="flex-auto" autocomplete="off" /> -->
+    </div>
+
+    <div class="form-group">
+      <label for="cif" class="font-semibold w-24">رقم البطاقه</label>
+      <p-inputmask
+        mask="999-9999-9999999"
+        id="cif"
+        class="flex-auto"
+        formControlName="cif"
+        placeholder="99-999999"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="phoneNumber" class="font-semibold w-24">ارقام الشرائح</label>
+      <div class="d-flex mb-2">
+        <input
+          [style.width.%]="80"
+          #s
+          pInputText
+          id="phoneNumber"
+          class="flex-auto"
+          autocomplete="off"
+        />
+        <button pButton class="me-1 btn-search" (click)="addSimTag(s)">
+          اضف
+        </button>
+      </div>
+      <div>
+        @for (item of simNumbers; track $index) {
+        <p-tag severity="info" [value]="item" class="mx-1" />
+        }
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="branch" class="font-semibold w-24">الفرع</label>
+      <p-select
+        [style.width.%]="100"
+        id="branch"
+        [appendTo]="'body'"
+        [options]="(branches$ | async) || []"
+        optionLabel="nameAr"
+        formControlName="branch"
+      />
+    </div>
+
+    <div class="flex justify-end gap-2">
+      <button pButton class="btn-delete ms-2" (click)="visible = false">
+        الغاء
+      </button>
+      <button pButton class="btn-search" type="submit">حفظ</button>
+    </div>
+  </form>
+</p-dialog>

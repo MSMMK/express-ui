@@ -1,8 +1,7 @@
 <div class="layout">
   <app-side-bar [sidebarCollapsed]="sideBarCollapesed"/>
-  <main class="main">
-      <app-header (emitIsCollapsed)="getCollapsedValue($event)"/>
+  <main class="main" style="overflow-y: scroll;">
+      <app-header [isCollapse]="sideBarCollapesed" (emitIsCollapsed)="getCollapsedValue($event)"/>
       <router-outlet/>
-      <!-- <app-footer/> -->
   </main>
 </div>

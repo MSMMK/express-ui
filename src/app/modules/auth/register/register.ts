@@ -7,7 +7,7 @@ import { PasswordModule } from 'primeng/password';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { RouterModule } from '@angular/router';
-import { SvgLogo } from "../../commons/svg-logo/svg-logo";
+import { SvgLogo } from "../../common/svg-logo/svg-logo";
 
 @Component({
     selector: 'app-register',

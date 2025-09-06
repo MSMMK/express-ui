@@ -8,4 +8,5 @@ export interface RegisterRequest {
     govId?: number;
     cityId?: number;
     userType?: UserType;
+    role?: string;
 }

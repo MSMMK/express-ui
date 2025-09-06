@@ -1,0 +1,13 @@
+   <p-card class="card card-border">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-3">
+              <i [ngClass]="item()?.icon"></i>
+            </div>
+            <div class="col-9">
+              <h5>{{item()?.label}}</h5>
+              <h6>{{item()?.value |currency}}</h6>
+            </div>
+          </div>
+        </div>
+</p-card>

@@ -1,14 +1,13 @@
   .sidebar {
     height: 100%;
     width: 220px;
+    font-weight: 500;
     transition: width 0.3s ease;
-    background-color: #f2f2f2;
-    // border-left: 3px solid rgb(31, 51, 74);
-    padding: 6rem 0.5rem;
+    background-color: #4c1bd2;
+    // padding: 6rem 0.5rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-    // margin-top: 5rem;
 
     &.collapsed {
       width: 60px;
@@ -32,7 +31,7 @@
 
       li {
         padding: 0.75rem;
-        margin-bottom: 0.5rem;
+        margin-bottom: 0.1rem;
         cursor: pointer;
         border-radius: 6px;
         border: 1px solid transparent;
@@ -40,23 +39,24 @@
         align-items: center;
         gap: 0.5rem;
         justify-content: flex-start;
-        color: rgb(31, 51, 74);
+        color: rgb(255, 255, 255);
         transition: all 0.2s ease;
 
         &.active {
-          border: 1px solid #1B0F31;
+          background-color: #7142f2;
+          // border: 1px solid #1B0F31;
           font-weight: 600;
         }
 
         &:hover {
-            background-color: #dedddd;
+            background-color: #7142f2;
           // color: white;
         }
 
         i {
           width: 20px;
           text-align: center;
-          color: rgb(31, 51, 74);
+          color: rgb(255, 255, 255);
           font-weight: bold;
         }
       }
@@ -68,7 +68,7 @@
 
       .btn-logout {
         background-color: transparent !important;
-        color: black  !important;
+        color: rgb(255, 255, 255)  !important;
         border: 0;
         outline: 0;
         width: 100%;

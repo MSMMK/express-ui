@@ -1,12 +1,9 @@
-import { User } from './../../models/user';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { inject, Injectable, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { inject, Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { Observable } from 'rxjs';
 import { Branch } from '../../models/branch';
-import { header } from '@primeng/themes/aura/accordion';
 import { LocalStorage } from '../../services/local-storage';
-import { LoginResponse } from '../../models/login-response';
 import { SearchCriteria } from '../../models/seach-criteria';
 
 @Injectable({
@@ -18,7 +15,7 @@ export class BranchService {
   private http = inject(HttpClient);
   private storage = inject(LocalStorage);
 
-  getBranches(searchCritieria: SearchCriteria, page: number, size: number): Observable<Branch[]> {
+  getBranches(searchCritieria: SearchCriteria = {}, page: number = 0, size: number = 1000): Observable<Branch[]> {
   return this.http.post<Branch[]>(
       `${environment.expressCashApiUrl}/branches/search?page=${page}&size=${size}`, searchCritieria);
   }

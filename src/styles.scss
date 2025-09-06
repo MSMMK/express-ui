@@ -1,1 +1,102 @@
 /* You can add global styles to this file, and also import other style files */
+@import "primeicons/primeicons.css";
+
+
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f4f4;
+}
+
+
+.btn-color {
+  background-color: rgb(2, 71, 154) !important;
+}
+
+button {
+  border: none !important;
+  color: white !important;
+  transition: all 0.3s ease !important;
+}
+
+button.btn-search {
+  background-color: #4D20D2 !important;
+
+}
+
+button.btn-search:hover {
+  background-color: #501af4 !important;
+}
+
+button.btn-delete {
+  background-color: #ce2727 !important;
+}
+
+button.btn-delete:hover {
+  background-color: #7d1111 !important;
+}
+
+
+.status {
+  padding: 3px;
+  border-radius: 15px;
+  display: block;
+  text-align: center;
+  width: 90px;
+  color: rgb(60, 58, 58);
+  font-weight: bold;
+}
+
+.status-inactive {
+  background: #e6c3c3;
+}
+
+.status-active {
+  background: #c1ecbf;
+}
+
+.card-style {
+  background-color: white !important;
+  // box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-border {
+  border: #e6dffb 1px solid !important;
+  border-radius: 15px;
+
+  h4 {
+    color: #4c1bd2 !important;
+  }
+
+}
+
+.container-style {
+  background-color: white !important;
+  box-shadow: 5px 6px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  padding: 20px 50px;
+  padding-bottom: 50px;
+}
+
+.container-border {
+    border: 1px solid #4c1bd2 !important;
+}
+
+.search-style {
+  background-color: white !important;
+  box-shadow: 3px 3px 2px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  margin-top: 15px;
+}
+
+.text-muted {
+  color: #74190ff0 !important;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif !important;
+}

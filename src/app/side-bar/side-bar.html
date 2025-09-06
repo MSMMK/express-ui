@@ -1,13 +1,19 @@
   <aside class="sidebar" [ngClass]="{ collapsed: sidebarCollapsed }">
-        <div class="logo" *ngIf="!sidebarCollapsed">
+        <div class="logo mt-5" *ngIf="!sidebarCollapsed">
         <app-svg-logo/>
     </div>
-    <ul class="nav-list">
-      <li routerLink="dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"><i class="pi pi-home"></i> <span *ngIf="!sidebarCollapsed">الاحصائيات</span></li>
-      <li routerLink="mony-transform" routerLinkActive="active"><i class="pi pi-refresh"></i> <span *ngIf="!sidebarCollapsed">تحويل</span></li>
+    <ul class="nav-list mt-5">
+      <li routerLink="dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"><i class="pi pi-chart-bar"></i> <span *ngIf="!sidebarCollapsed">الاحصائيات</span></li>
+      @if (authService.userType! == 'BRANCH_MANAGER' || authService.userType! == 'USER') {
+        <li routerLink="mony-transform" routerLinkActive="active"><i class="pi pi-money-bill"></i> <span *ngIf="!sidebarCollapsed">تحويل</span></li>
+      }
       <li routerLink="transactions"  routerLinkActive="active"><i class="pi pi-wallet"></i> <span *ngIf="!sidebarCollapsed">المعاملات</span></li>
+      @if (authService.userType! == 'ADMIN') {
       <li routerLink="branches"  routerLinkActive="active"><i class="pi pi-warehouse"></i> <span *ngIf="!sidebarCollapsed">الفروع</span></li>
-      <li routerLink="users"  routerLinkActive="active"><i class="pi pi-users"></i> <span *ngIf="!sidebarCollapsed">المستخدمين</span></li>
-      <li routerLinkActive="active" class="bottom-item"><i class="pi pi-sign-out"></i> <button class="btn-logout" (click)="logout()" *ngIf="!sidebarCollapsed">الحروج</button></li>
+      }
+      <li routerLink="users"  routerLinkActive="active"><i class="pi pi-address-book"></i> <span *ngIf="!sidebarCollapsed">الموظفين</span></li>
+      <li routerLink="branc-sims"  routerLinkActive="active"><i class="pi pi-mobile"></i> <span *ngIf="!sidebarCollapsed">الشرائح</span></li>
+      <li routerLink="customers"  routerLinkActive="active"><i class="pi pi-users"></i> <span *ngIf="!sidebarCollapsed">العملاء</span></li>
+      <li (click)="logout()" routerLinkActive="active" class="bottom-item"><i class="pi pi-sign-out"></i> <button class="btn-logout" (click)="logout()" *ngIf="!sidebarCollapsed">الحروج</button></li>
     </ul>
   </aside>

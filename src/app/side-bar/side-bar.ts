@@ -1,9 +1,10 @@
-import { Component, Inject, Input, input, PLATFORM_ID } from '@angular/core';
+import { Component, inject, Inject, Input, input, PLATFORM_ID } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { SvgLogo } from "../modules/commons/svg-logo/svg-logo";
+import { SvgLogo } from "../modules/common/svg-logo/svg-logo";
 import { AuthService } from '../modules/auth/auth-service';
+import { UserType } from '../models/user-type.enum';
 
 @Component({
   selector: 'app-side-bar',
@@ -15,7 +16,9 @@ export class SideBar {
   @Input() sidebarCollapsed = false;
   isBrowser: boolean;
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object, private authService: AuthService) {
+  authService = inject(AuthService);
+
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
     this.isBrowser = isPlatformBrowser(platformId);
   }
 

@@ -1,38 +1,27 @@
-<header class="app-header">
+<header class="app-header" [ngClass]="{'collapse-width' : isCollapse, 'non-collapse-width': !isCollapse}">
 
 <div class="container-fluid">
-  <div class="row justify-content-around">
-    <div class="col-10">
+  <div class="row justify-content-around align-items-center">
+    <div class="col-sm-12 col-md-8 col-lg-10">
       <div class="mt-2">
-      <button pButton icon="pi pi-bars" class="collapse-btn" [style.background]="'transparent'" [style.border]="'none'" (click)="toggleSidebar()"></button>
+      <button pButton class="collapse-btn" (click)="toggleSidebar()"><i class="pi pi-bars"></i></button>
     </div>
     </div>
-    <div class="col-2">
+    <div class="col-sm-12 col-md-4 col-lg-2">
       <div class="row align-items-center justify-content-center">
           <div class="col d-none d-lg-block">
         </div>
         <div class="col d-flex  align-items-center">
           <div class="name-header">
-            <h6>اسم الصفحة</h6>
-            <p>branch 1</p>
+            <h6>{{userName | titlecase}}</h6>
+            @if (branchName) {<p class="text-muted">{{branchName}}</p>}
           </div>
-          <img src="https://www.pngall.com/wp-content/uploads/5/Profile-Male-PNG.png" width="50"/>
+
+          <img class="img-style" [src]="'https://st3.depositphotos.com/3431221/13621/v/450/depositphotos_136216036-stock-illustration-man-avatar-icon-hipster-character.jpg'"/>
         </div>
       </div>
     </div>
   </div>
 </div>
-  <!--
-  <div class="contaier">
-    <div class="row justify-content-center align-items-center">
-      <div class="col">
-        <img src="https://www.pngall.com/wp-content/uploads/5/Profile-Male-PNG.png" width="50"/>
-      </div>
-      <div class="col">
-        <h3>اسم الصفحة</h3>
-        <p>معلومات إضافية أو شعار</p>
-      </div>
-    </div>
-  </div> -->
 </header>
 

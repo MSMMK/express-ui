@@ -10,7 +10,7 @@
 
   th {
     // background-color: #e0f7f6;
-    color: #ffffff;
+    // color: #ffffff;
     font-weight: 600;
   }
 
@@ -43,4 +43,10 @@
     margin-bottom: 0.5rem;
     font-weight: 600;
   }
+
 }
+
+
+::ng-deep p-paginator button{
+    background-color: #4D20D2 !important;
+  }

@@ -30,7 +30,7 @@ import { LoginResponse } from '../../models/login-response';
 import { LocalStorage } from '../../services/local-storage';
 import { UserType } from '../../models/user-type.enum';
 import { UserService } from '../../services/user-service';
-import { LoadingOverlayComponent } from "../commons/loader/loader.component";
+import { LoadingOverlayComponent } from "../common/loader/loader.component";
 
 @Component({
   selector: 'app-users',
@@ -66,9 +66,7 @@ export class Users {
   private storage = inject(LocalStorage);
   types$: Observable<Lookup[]> = this.lookupService.getUserTypes();
   imageAsBase64: string = '';
-  governorates$: Observable<Lookup[]> = this.lookupService
-    .getGvernotaes()
-    .pipe(finalize(() => (this.isLoading = false)));
+  governorates$: Observable<Lookup[]> = this.lookupService.getGvernotaes();
   cities$!: Observable<Lookup[]>;
   profileImage: any;
   branches$!: Observable<any[]>;
@@ -118,9 +116,11 @@ export class Users {
       const userType = response?.details.userType;
       if (userType == UserType.ADMIN) {
         registerRequest.userType = UserType.BRANCH_MANAGER;
+        registerRequest.role = 'ROLE_MANAGER'
       }
       if (userType == UserType.BRANCH_MANAGER) {
         registerRequest.userType = UserType.USER;
+        registerRequest.role = 'ROLE_USER'
       }
 
       this.authService
@@ -140,19 +140,12 @@ export class Users {
             });
             this.search();
           },
-          error: (err) => {
-            console.log('Error deactivating branch:', err);
-            this.messageService.add({
-              severity: 'error',
-              summary: 'Error',
-              detail: 'Failed to deleted branch' + err.message,
-            });
-          },
         });
     }
   }
 
  search() {
+  this.isLoading = true;
   this.users$ = this.userService.listUsers(this.searchCriteria, 0, 1000).pipe(
     finalize(() => {
       this.isLoading = false;
