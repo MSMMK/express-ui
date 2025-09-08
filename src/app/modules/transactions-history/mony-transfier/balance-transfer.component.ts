@@ -39,6 +39,7 @@ import { TransactionService } from '../transaction.service';
 import { Customer } from '../../../models/customer';
 import { IftaLabelModule } from 'primeng/iftalabel';
 import { Router } from '@angular/router';
+import { BalanceCardInfoComponent } from "../../common/balance-card-info/balance-card-info.component";
 // import { InputTextareaModule } from 'primeng/inputtextarea';
 
 @Component({
@@ -58,8 +59,9 @@ import { Router } from '@angular/router';
     ReactiveFormsModule,
     TableModule,
     Toast,
-    IftaLabelModule
-  ],
+    IftaLabelModule,
+    BalanceCardInfoComponent
+],
   templateUrl: './balance-transfer.component.html',
   styleUrls: ['./balance-transfer.component.scss'],
 })
@@ -70,9 +72,7 @@ export class BalanceTransferComponent {
   private fb = inject(FormBuilder);
   private messageService = inject(MessageService);
   disabled: boolean = false;
-  fromAccount: any;
   customer!: Customer;
-  toAccount: any;
   accounts = [];
   amount: number = 0;
   toSuggestions: SimModel[] = [];
@@ -117,6 +117,7 @@ export class BalanceTransferComponent {
       fiftyEgp: [0],
       oneHundredEgp: [0],
       twoHundredEgp: [0],
+      transactionId: [''],
       notes: [''],
     });
 

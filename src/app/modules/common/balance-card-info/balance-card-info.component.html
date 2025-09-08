@@ -1,0 +1,33 @@
+<div class="card">
+  <div class="row justify-content-center align-items-center">
+    <div class="col-3">
+               @if (sim.phoneNumber?.startsWith('010')) {
+                  <img
+                    class="img"
+                    src="vodafone.png"
+                  />
+                  }@else if (sim.phoneNumber?.startsWith('011')) {
+                  <img
+                    class="img"
+                    src="etisalat.png"
+                  />
+                  }@else if (sim.phoneNumber?.startsWith('012')) {
+                  <img
+                    class="img"
+                    src="Orange.png"
+                  />
+                  }@else {
+                  <img
+                    class="img"
+                    src="we.png"
+                  />
+                  }
+    </div>
+    <div class="col-9">
+      <div class="card-body">
+        <p class=""><span>الرصيد اليومي</span> <span class="balance">{{sim.dailyBalance}} جنيه</span></p>
+        <p><span>الرصيد الشهرى</span> <span class="balance">{{sim.monthlyBalance}} جنيه</span></p>
+      </div>
+    </div>
+  </div>
+</div>

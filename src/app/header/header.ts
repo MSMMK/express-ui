@@ -3,6 +3,7 @@ import { Component, inject, Input, OnInit, output } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { AuthService } from '../modules/auth/auth-service';
 import { NgClass, TitleCasePipe } from '@angular/common';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-header',
@@ -25,7 +26,7 @@ export class Header implements OnInit {
     this.userName = user?.username;
     this.branchName = this.authService.userBranch?.nameAr;
     if (user?.profileImage) {
-      this.profileImageUrl =   user?.profileImage
+      this.profileImageUrl =   environment.expressCashApiUrl + user?.profileImage
     }else {
       this.profileImageUrl = 'https://www.pngall.com/wp-content/uploads/5/Profile-Male-PNG.png';
     }

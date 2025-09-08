@@ -66,7 +66,7 @@
                   pButton
                   icon="pi pi-trash"
                   class="btn-delete"
-                  (click)="deleteUser(t)"
+                  (click)="deleteUser(t.id)"
                 ></button>
               </td>
             </tr>
@@ -116,6 +116,7 @@
       <label for="password" class="font-semibold w-24">الرقم السري</label>
       <input
         [style.width.%]="100"
+        type="password"
         formControlName="password"
         pInputText
         id="password"

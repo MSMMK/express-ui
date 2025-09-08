@@ -65,7 +65,7 @@ export class Users {
   private userService = inject(UserService);
   private storage = inject(LocalStorage);
   types$: Observable<Lookup[]> = this.lookupService.getUserTypes();
-  imageAsBase64: string = '';
+  imageAsBase64: any;
   governorates$: Observable<Lookup[]> = this.lookupService.getGvernotaes();
   cities$!: Observable<Lookup[]>;
   profileImage: any;
@@ -154,8 +154,26 @@ export class Users {
   );
 }
 
-deleteUser(_t38: any) {
-throw new Error('Method not implemented.');
+deleteUser(userId: number) {
+  this.userService.deleteUser(userId).subscribe({
+    next: () => {
+      this.messageService.add({
+        severity: 'success',
+        summary: 'Success',
+        detail: 'User Deleted successfully',
+      });
+      this.search();
+    },
+    error: (err) => {
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Error',
+        detail: 'Failed to delete user',
+      });
+      console.error('Error deleting user:', err);
+    }
+  });
+
 }
 
 }

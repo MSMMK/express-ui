@@ -112,6 +112,7 @@ export class SimComponent {
           summary: 'Success',
           detail: 'Sim added successfully',
         });
+        this.form.reset();
         this.search();
         this.isLoading = false;
         this.visible = false;

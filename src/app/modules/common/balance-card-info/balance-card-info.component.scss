@@ -1,0 +1,40 @@
+.card {
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  background-color: rgb(10, 17, 59);
+  border: 1px solid #4c1bd2;
+  border-top: 1px solid #fff;
+  border-left: 1px solid #fff;
+  border-radius: 15px;
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.7);
+  }
+
+  .img {
+    border-radius: 50%;
+    background-color: white;
+    padding: 5px;
+    width: 50px;
+    height: 50px;
+    border: 1px solid #4c1bd2;
+    margin-bottom: 10px;
+  }
+
+  p {
+    font-size: 1rem;
+    margin: 0.5rem 0;
+    display: flex;
+    justify-content: space-between;
+
+    span {
+      font-weight: 600;
+      color: #b9b2b2;
+    }
+    .balance {
+      font-weight: 700;
+      color: #fff9cc;
+    }
+  }
+}

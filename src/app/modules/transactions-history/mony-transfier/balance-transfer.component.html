@@ -1,4 +1,13 @@
 <p-toast />
+<div class="container-fluid cont mb-5">
+  <div class="row align-items-center justify-content-around">
+  @for (sim of fromBranchSims$ | async; track $index) {
+    <div class="col-2">
+      <app-balance-card-info [sim]="sim"></app-balance-card-info>
+    </div>
+  }
+  </div>
+</div>
 <form [formGroup]="form" (ngSubmit)="submit()">
   <div class="container">
     <div class="row justify-content-between">
@@ -25,20 +34,38 @@
               optionLabel="phoneNumber"
             >
               <ng-template let-item pTemplate="item">
-                  <div class="flex items-center">
-                    @if (item.phoneNumber.startsWith('010')) {
-                        <img src="vodafone.png" [class]="'mr-2 flag flag'" style="width: 30px" />
-                    }@else if (item.phoneNumber.startsWith('011')) {
-                        <img src="etisalat.png" [class]="'mr-2 flag flag'" style="width: 30px" />
-                    }@else if (item.phoneNumber.startsWith('012')) {
-                        <img src="Orange.png" [class]="'mr-2 flag flag'" style="width: 30px" />
-                    }@else {
-                        <img src="we.png" [class]="'mr-2 flag flag'" style="width: 30px" />
-                    }
+                <div class="flex items-center">
+                  @if (item.phoneNumber.startsWith('010')) {
+                  <img
+                    src="vodafone.png"
+                    [class]="'mr-2 flag flag'"
+                    style="width: 30px"
+                  />
+                  }@else if (item.phoneNumber.startsWith('011')) {
+                  <img
+                    src="etisalat.png"
+                    [class]="'mr-2 flag flag'"
+                    style="width: 30px"
+                  />
+                  }@else if (item.phoneNumber.startsWith('012')) {
+                  <img
+                    src="Orange.png"
+                    [class]="'mr-2 flag flag'"
+                    style="width: 30px"
+                  />
+                  }@else {
+                  <img
+                    src="we.png"
+                    [class]="'mr-2 flag flag'"
+                    style="width: 30px"
+                  />
+                  }
 
-                    <span class="mx-5">{{ item.dailyBalance | currency : "EGP" }}</span>
-                    <span class="mx-5">{{ item.phoneNumber }}</span>
-                  </div>
+                  <span class="mx-5">{{
+                    item.dailyBalance | currency : "EGP"
+                  }}</span>
+                  <span class="mx-5">{{ item.phoneNumber }}</span>
+                </div>
               </ng-template>
             </p-select>
           </div>
@@ -55,20 +82,36 @@
               (completeMethod)="search($event)"
             >
               <ng-template let-item pTemplate="item">
-                  <div class="flex items-center">
-                    @if (item.phoneNumber.startsWith('010')) {
-                        <img src="vodafone.png" [class]="'mr-2 flag flag'" style="width: 30px" />
-                    }@else if (item.phoneNumber.startsWith('011')) {
-                        <img src="etisalat.png" [class]="'mr-2 flag flag'" style="width: 30px" />
-                    }@else if (item.phoneNumber.startsWith('012')) {
-                        <img src="Orange.png" [class]="'mr-2 flag flag'" style="width: 30px" />
-                    }@else {
-                        <img src="we.png" [class]="'mr-2 flag flag'" style="width: 30px" />
-                    }
+                <div class="flex items-center">
+                  @if (item.phoneNumber.startsWith('010')) {
+                  <img
+                    src="vodafone.png"
+                    [class]="'mr-2 flag flag'"
+                    style="width: 30px"
+                  />
+                  }@else if (item.phoneNumber.startsWith('011')) {
+                  <img
+                    src="etisalat.png"
+                    [class]="'mr-2 flag flag'"
+                    style="width: 30px"
+                  />
+                  }@else if (item.phoneNumber.startsWith('012')) {
+                  <img
+                    src="Orange.png"
+                    [class]="'mr-2 flag flag'"
+                    style="width: 30px"
+                  />
+                  }@else {
+                  <img
+                    src="we.png"
+                    [class]="'mr-2 flag flag'"
+                    style="width: 30px"
+                  />
+                  }
 
-                    <span class="mx-5">{{ item.customer?.name }}</span>
-                    <span class="mx-5">{{ item.phoneNumber }}</span>
-                  </div>
+                  <span class="mx-5">{{ item.customer?.name }}</span>
+                  <span class="mx-5">{{ item.phoneNumber }}</span>
+                </div>
               </ng-template>
             </p-autocomplete>
           </div>
@@ -111,6 +154,17 @@
               ></button>
             </div>
           </div>
+                  <div class="p-field mb-4">
+            <label for="amount" class="block font-medium mb-2">الرقم المرجعى</label>
+            <div class="p-inputgroup">
+              <p-inputnumber
+                formControlName="transactionId"
+                [invalid]="amount === undefined"
+                [style.width.%]="100"
+                placeholder="ادخل الرقم المرجعى"
+              />
+            </div>
+          </div>
           <div class="p-field mb-4">
             <p-iftalabel>
               <textarea
@@ -136,7 +190,7 @@
         </div>
       </div>
       <div class="col-sm-12 col-lg-5 my-1">
-        <div class="row container-style  container-border">
+        <div class="row container-style container-border">
           <div class="p-4">
             <h4 class="font-bold text-2xl mb-3 text-center">
               عدد الفئات من كل عمله
