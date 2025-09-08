@@ -1,3 +1,3 @@
 export const environment = {
-  expressCashApiUrl: 'http://localhost:5005/api',
+  expressCashApiUrl: 'https://express-cash.onrender.com',
 };
